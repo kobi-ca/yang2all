@@ -1,6 +1,7 @@
 use std::fs::File;
 use std::path::Path;
 use std::io::Read;
+use yang2::context::{Context, ContextFlags};
 
 fn main() {
     let path = Path::new("ultraconfig-interfaces.yang");
@@ -16,4 +17,8 @@ fn main() {
         Err(why) => panic!("couldn't read {}: {}", display, why),
         Ok(_) => print!("{} contains:\n{}", display, s),
     }
+
+    // Using yang2 Crate
+    let ctx = Context::new(ContextFlags::NO_YANGLIBRARY).expect("Failed to create context");
+
 }
